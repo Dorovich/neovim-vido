@@ -71,14 +71,81 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	"rebelot/kanagawa.nvim",
-	"DanisDGK/srcery.nvim",
-	"ramojus/mellifluous.nvim",
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-		build = ":TSUpdate"
-	}
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "c", "lua", "commonlisp", "query", },
+				sync_install = false,
+				auto_install = false,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				}
+			})
+		end
+	},
+	{
+		"max397574/better-escape.nvim",
+		config = function()
+			require("mellifluous").setup({
+				dim_inactive = false,
+				color_set = "mellifluous",
+				transparent_background = {
+					enabled = true,
+					floating_windows = false,
+				},
+			})
+		end
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local builtin = require("telescope.builtin")
+			keymap("n", "<leader>f", builtin.find_files, nil)
+			keymap("n", "<leader>b", builtin.buffers, nil)
+		end
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		config = function()
+			require("kanagawa").setup({
+				compile = true,
+				transparent = true,
+			})
+		end
+	},
+	{
+		"DanisDGK/srcery.nvim",
+		config = function()
+			require("srcery").setup({
+				transparent_background = true,
+				term_colors = true,
+				integrations = {
+					treesitter = true,
+				},
+			})
+		end
+	},
+  {
+    "ramojus/mellifluous.nvim",
+    config = function()
+      require("mellifluous").setup({
+        dim_inactive = false,
+        color_set = "mellifluous",
+        transparent_background = {
+          enabled = true,
+          floating_windows = false,
+        },
+      })
+    end
+  }
 }, {})
 
-require("plugins")
+vim.cmd("colorscheme kanagawa")
+
+-- vim: ts=2 sts=2 sw=2 et
