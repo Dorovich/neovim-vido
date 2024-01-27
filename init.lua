@@ -87,6 +87,9 @@ require("lazy").setup({
 			})
 		end
 	},
+  {
+    "tpope/vim-commentary",
+  },
 	{
 		"max397574/better-escape.nvim",
     config = function()
@@ -100,6 +103,12 @@ require("lazy").setup({
       })
     end
 	},
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup()
+    end
+  },
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
