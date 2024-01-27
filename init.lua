@@ -89,16 +89,16 @@ require("lazy").setup({
 	},
 	{
 		"max397574/better-escape.nvim",
-		config = function()
-			require("mellifluous").setup({
-				dim_inactive = false,
-				color_set = "mellifluous",
-				transparent_background = {
-					enabled = true,
-					floating_windows = false,
-				},
-			})
-		end
+    config = function()
+      require("better_escape").setup({
+        mapping = {"jk"},
+        timeout = 100,
+        clear_empty_lines = false,
+        keys = function()
+          return vim.api.nvim_win_get_cursor(0)[2] > 1 and '<esc>l' or '<esc>'
+        end,
+      })
+    end
 	},
 	{
 		"nvim-telescope/telescope.nvim",
