@@ -16,7 +16,8 @@ opt.splitright = true
 opt.splitbelow = true
 opt.lazyredraw = true
 opt.clipboard = "unnamedplus"
-opt.lispwords = opt.lispwords + "define*,lambda*"
+opt.lispwords = opt.lispwords + "define*,lambda*" -- guile
+opt.lispwords = opt.lispwords + "sb-thread:with-mutex,defcommand,define-stumpwm-type" -- stumpwm, sbcl
 
 -- Keys, Commands
 
