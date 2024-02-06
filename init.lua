@@ -23,6 +23,7 @@ opt.lispwords = opt.lispwords + "sb-thread:with-mutex,defcommand,define-stumpwm-
 -- Keys, Commands
 
 keymap("n", "ñ", ":", nil)
+keymap("x", "ñ", ":", nil)
 keymap("n", "U", "<c-r>", nil)
 keymap("n", "Y", "y$", nil)
 keymap("x", ">", ">gv", {silent=true})
